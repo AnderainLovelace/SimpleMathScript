@@ -7,11 +7,12 @@
 using namespace std;
 
 #define checkoperand(s, n) if ((s).size() < (n)) throw(RuntimeError("Missing operand"))
-
+Canvas *canvas = nullptr;
 const char * KEY_WORDS[] = {
-	"let", "for", "if", "break", "print", nullptr
+	"let", "for", "if", "break", "print",
+	//"plot", "moveto", "lineto", "clear",
+	nullptr
 };
-
 VariableSet variableSet;
 
 void VariableSet::let(string varName, Value value) {
@@ -211,6 +212,7 @@ void Expr::handleOperator(const string &opr, ValueStack &s) {
 }
 
 void Expr::handleKeyWord(const string &key, ValueStack &s) {
+	static int plotX = 0, plotY = 0;
 	if (key == "let") {
 		checkoperand(s, 2);
 		string a = s.popVariableName();
@@ -260,6 +262,45 @@ void Expr::handleKeyWord(const string &key, ValueStack &s) {
 	else if (key == "break") {
 		throw(BreakException());
 	}
+	// Draw function
+	/*else if (key == "canvas") {
+		checkoperand(s, 2);
+		int h = (int)s.popNumber();
+		int w = (int)s.popNumber();
+		if (canvas == nullptr) {
+			canvas = new Canvas();
+			canvas->init(w, h);
+		}
+		s.push(Value(TYPE_NUM, 0));
+	}
+	else if (key == "plot") {
+		checkoperand(s, 2);
+		int y = (int)s.popNumber();
+		int x = (int)s.popNumber();
+		canvas->set_pixel(x, y, canvas->rgb(0, 0, 0));
+		canvas->flip();
+		s.push(Value(TYPE_NUM, 0));
+	}
+	else if (key == "moveto") {
+		checkoperand(s, 2);
+		plotY = (int)s.popNumber();
+		plotX = (int)s.popNumber();
+		s.push(Value(TYPE_NUM, 0));
+	}
+	else if (key == "lineto") {
+		checkoperand(s, 2);
+		int y = (int)s.popNumber();
+		int x = (int)s.popNumber();
+		canvas->line(plotX, plotY, x, y, canvas->rgb(0, 0, 0));
+		canvas->flip();
+		plotY = y;
+		plotX = x;
+		s.push(Value(TYPE_NUM, 0));
+	}
+	else if (key == "clear") {
+		canvas->clear(canvas->rgb(255, 255, 255));
+		s.push(Value(TYPE_NUM, 0));
+	}*/
 }
 
 double Expr::eval() {
