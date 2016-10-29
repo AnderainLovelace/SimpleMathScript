@@ -4,6 +4,9 @@
 #include "string"
 #include "stack"
 #include "map"
+#include "canvas.h"
+
+extern Canvas *canvas;
 
 class SyntaxError {
 public:

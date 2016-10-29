@@ -55,5 +55,9 @@ int main(int argc, char **argv) {
 		}
 
 	}
+	/*if (canvas != nullptr) {
+		canvas->dispose();
+		delete canvas;
+	}*/
 	return 0;
 }
