@@ -118,7 +118,7 @@ Analyzer& Analyzer::operator >> (Token &token) {
 	else if(strExpr[pos] == '+' || strExpr[pos] == '-' || strExpr[pos] == '+' ||
 			strExpr[pos] == '*' || strExpr[pos] == '/' || strExpr[pos] == '^' ||
 			strExpr[pos] == '<' || strExpr[pos] == '>' || strExpr[pos] == '=' ||
-			strExpr[pos] == ';') {
+			strExpr[pos] == ';' || strExpr[pos] == '|' || strExpr[pos] == '&') {
 		token.type = TOKEN_OPR;
 		token.token = strExpr[pos]; pos++;
 	}
@@ -197,6 +197,16 @@ void Expr::handleOperator(const string &opr, ValueStack &s) {
 	else if (opr[0] == ';') {
 		checkoperand(s, 1);
 		s.pop();
+	}
+	else if (opr[0] == '&') {
+		checkoperand(s, 2);
+		b = s.popNumber(); a = s.popNumber();
+		s.push(Value(TYPE_NUM, (int)a && (int)b));
+	}
+	else if (opr[0] == '|') {
+		checkoperand(s, 2);
+		b = s.popNumber(); a = s.popNumber();
+		s.push(Value(TYPE_NUM, (int)a || (int)b));
 	}
 }
 
