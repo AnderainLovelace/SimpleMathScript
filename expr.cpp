@@ -7,7 +7,7 @@
 using namespace std;
 
 #define checkoperand(s, n) if ((s).size() < (n)) throw(RuntimeError("Missing operand"))
-Canvas *canvas = nullptr;
+//Canvas *canvas = nullptr;
 const char * KEY_WORDS[] = {
 	"let", "for", "if", "break", "print",
 	//"plot", "moveto", "lineto", "clear",
