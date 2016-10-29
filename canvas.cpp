@@ -1,5 +1,5 @@
 #include "canvas.h"
-
+/*
 #pragma comment(lib,"legacy_stdio_definitions.lib")
 #pragma comment(lib,"SDL.lib")
 #pragma comment(lib,"SDLmain.lib")
@@ -66,3 +66,4 @@ void Canvas::set_pixel(int x, int y, color c) {
 	pixel += (y * surface->pitch) + (x * sizeof(Uint32));
 	*((Uint32*)pixel) = c;
 }
+*/
