@@ -3,6 +3,7 @@
 #pragma comment(lib,"legacy_stdio_definitions.lib")
 #pragma comment(lib,"SDL.lib")
 #pragma comment(lib,"SDLmain.lib")
+
 extern "C" { FILE __iob_func[3] = { *stdin,*stdout,*stderr }; }
 
 void Canvas::init(int width, int height) {
