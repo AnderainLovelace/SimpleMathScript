@@ -11,6 +11,12 @@ public:
 	int pos;
 };
 
+class BreakException {
+public:
+	BreakException() {}
+};
+
+
 class RuntimeError {
 public:
 	RuntimeError(std::string _message) : message(_message) {}

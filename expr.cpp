@@ -9,7 +9,7 @@ using namespace std;
 #define checkoperand(s, n) if ((s).size() < (n)) throw(RuntimeError("Missing operand"))
 
 const char * KEY_WORDS[] = {
-	"let", "for", "if", "print", nullptr
+	"let", "for", "if", "break", "print", nullptr
 };
 
 VariableSet variableSet;
@@ -232,7 +232,12 @@ void Expr::handleKeyWord(const string &key, ValueStack &s) {
 		Expr start(s.popBlock());
 
 		for (start.eval(); check.eval() != 0; adder.eval()) {
-			exe.eval();
+			try {
+				exe.eval();
+			}
+			catch (BreakException e) {
+				break;
+			}
 		}
 
 		s.push(Value(TYPE_NUM, 0));
@@ -241,6 +246,9 @@ void Expr::handleKeyWord(const string &key, ValueStack &s) {
 		checkoperand(s, 1);
 		cout << s.popNumber() << endl;
 		s.push(Value(TYPE_NUM, 0));
+	}
+	else if (key == "break") {
+		throw(BreakException());
 	}
 }
 

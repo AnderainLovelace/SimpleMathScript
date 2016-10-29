@@ -1,7 +1,8 @@
-100 b let;
+0 b let;
 
 { 1 a let } {a 100 < } {a 1 + a let} {
 	b a + b let;
+	{ a 10 = } { break } {} if
 } for;
 
 b print

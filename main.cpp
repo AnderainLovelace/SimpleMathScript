@@ -49,6 +49,9 @@ int main(int argc, char **argv) {
 			catch (RuntimeError e) {
 				cout << "Runtime error : " << e.message << endl;
 			}
+			catch (BreakException e) {
+				cout << "Unhandled 'break'" << endl;
+			}
 		}
 
 	}
