@@ -1,0 +1,8 @@
+100 b let;
+
+{ 1 a let } {a 100 < } {a 1 + a let} {
+	b a + b let;
+} for;
+
+b print
+
